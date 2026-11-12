@@ -1,0 +1,213 @@
+@import "tailwindcss";
+
+/* ───────────────────────── Fofi design tokens ─────────────────────────
+   Colours sampled from the Fofi catalogue:
+   sage header, cream background, black ink and the yellow "Offers" block. */
+@theme inline {
+  --color-bg: #edefe9;
+  --color-surface: #f8f9f5;
+  --color-ink: #14171a;
+  --color-muted: #5b645e;
+  --color-line: #d3dacf;
+  --color-sage: #8c9c8b;
+  --color-sage-deep: #53665a;
+  --color-sage-soft: #dfe5dc;
+  --color-yellow: #ece140;
+  --color-whatsapp: #17803f;
+
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), var(--font-figtree), sans-serif;
+
+  --animate-marquee: marquee 28s linear infinite;
+  --animate-float-in: float-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes float-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes wa-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgb(23 128 63 / 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 18px rgb(23 128 63 / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(23 128 63 / 0);
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-yellow);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-sage-deep);
+    outline-offset: 3px;
+    border-radius: 0.5rem;
+  }
+}
+
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    padding: 0.85rem 1.5rem;
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1;
+    white-space: nowrap;
+    transition:
+      transform 0.2s ease,
+      background-color 0.2s ease,
+      color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+  .btn:active {
+    transform: scale(0.98);
+  }
+  .btn:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .btn-primary {
+    background: var(--color-ink);
+    color: var(--color-bg);
+  }
+  .btn-primary:hover {
+    background: var(--color-sage-deep);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--color-ink);
+    box-shadow: inset 0 0 0 1.5px var(--color-ink);
+  }
+  .btn-ghost:hover {
+    background: var(--color-ink);
+    color: var(--color-bg);
+  }
+
+  .btn-whatsapp {
+    background: var(--color-whatsapp);
+    color: #fff;
+  }
+  .btn-whatsapp:hover {
+    background: #116b34;
+  }
+
+  .btn-yellow {
+    background: var(--color-yellow);
+    color: var(--color-ink);
+  }
+  .btn-yellow:hover {
+    background: #f4ea58;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--color-sage-deep);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 1.75rem;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+  }
+
+  .display {
+    font-family: var(--font-display);
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+  }
+
+  .field {
+    width: 100%;
+    border-radius: 1rem;
+    border: 1.5px solid var(--color-line);
+    background: #fff;
+    padding: 0.85rem 1rem;
+    font-size: 1rem;
+    color: var(--color-ink);
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+  .field::placeholder {
+    color: #9aa39c;
+  }
+  .field:focus {
+    outline: none;
+    border-color: var(--color-sage-deep);
+    box-shadow: 0 0 0 4px rgb(83 102 90 / 0.15);
+  }
+  .field[aria-invalid="true"] {
+    border-color: #c0392b;
+    box-shadow: 0 0 0 4px rgb(192 57 43 / 0.12);
+  }
+}
+
+@layer utilities {
+  .wa-pulse {
+    animation: wa-pulse 2.4s ease-out infinite;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-marquee,
+  .wa-pulse {
+    animation: none !important;
+  }
+}

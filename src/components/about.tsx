@@ -112,7 +112,7 @@ export function About() {
             <SplitWords text="a piece you wear" delay={0.25} />
           </h2>
           <ScrollWords
-            className="mt-6 text-lg leading-9 font-bold"
+            className="mt-6 text-base leading-8 font-bold md:text-lg md:leading-9"
             text="Fofi combines the warmth of a blanket with the freedom of clothing. A soft lining on the inside, a hood that keeps the wind off, and a simple design that works every day, at home or out."
           />
 

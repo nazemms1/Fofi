@@ -385,19 +385,22 @@ export function Hero() {
                   aria-selected={i === index}
                   aria-label={p.name}
                   onClick={() => setIndex(i)}
-                  className="relative h-2 w-6 overflow-hidden rounded-full bg-ink/25 transition-colors hover:bg-ink/50"
+                  className="group grid size-6 place-items-center"
                 >
-                  {i === index && (
-                    <motion.span
-                      layoutId="hero-dot"
-                      className="absolute inset-0 rounded-full bg-ink"
-                      transition={{
-                        type: "spring",
-                        stiffness: 380,
-                        damping: 32,
-                      }}
-                    />
-                  )}
+                  {/* the visible bar stays small; the 24px button is the tap target */}
+                  <span className="relative h-2 w-6 overflow-hidden rounded-full bg-ink/25 transition-colors group-hover:bg-ink/50">
+                    {i === index && (
+                      <motion.span
+                        layoutId="hero-dot"
+                        className="absolute inset-0 rounded-full bg-ink"
+                        transition={{
+                          type: "spring",
+                          stiffness: 380,
+                          damping: 32,
+                        }}
+                      />
+                    )}
+                  </span>
                 </button>
               ))}
             </div>

@@ -151,7 +151,7 @@ export function OrderForm({ product }: { product: Product }) {
                       {o.total}
                     </span>
                     <span
-                      className={`mt-1 text-[0.7rem] font-bold leading-tight sm:text-xs ${
+                      className={`mt-1 text-xs font-bold leading-tight sm:text-sm ${
                         selected ? "text-yellow" : "text-sage-deep"
                       }`}
                     >

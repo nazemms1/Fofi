@@ -58,21 +58,24 @@ export function ProductCard({
           </span>
         </div>
 
-        <div className="mt-4 flex items-start justify-between gap-3 px-1">
+        {/* phones: name, colour and price stack so nothing gets cut off */}
+        <div className="mt-4 flex flex-col gap-1 px-1 md:flex-row md:items-start md:justify-between md:gap-3">
           <div className="min-w-0">
-            <h3 className="font-display truncate text-2xl font-black leading-tight md:text-[1.7rem]">
+            <h3 className="font-display text-xl font-black leading-tight md:truncate md:text-[1.7rem]">
               {product.name}
             </h3>
-            <p className="mt-1 flex items-center gap-2 text-[0.95rem] text-muted">
+            <p className="mt-1 flex items-center gap-2 text-sm text-muted md:text-[0.95rem]">
               <span
                 aria-hidden="true"
-                className="inline-block size-3.5 rounded-full ring-1 ring-ink/15"
+                className="inline-block size-3.5 shrink-0 rounded-full ring-1 ring-ink/15"
                 style={{ backgroundColor: product.swatch }}
               />
               {product.color}
             </p>
           </div>
-          <p className="shrink-0 pt-1 text-xl font-black">${SITE.price}</p>
+          <p className="text-lg font-black md:shrink-0 md:pt-1 md:text-xl">
+            ${SITE.price}
+          </p>
         </div>
       </Link>
     </Tilt>

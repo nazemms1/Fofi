@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useRef, useState, type CSSProperties } from "react";
 import { ArrowRight } from "lucide-react";
 import {
   AnimatePresence,
@@ -50,10 +50,63 @@ export function ColorShowcase() {
     <section
       ref={ref}
       aria-label="Choose your colour"
-      className="relative"
-      style={{ height: reduce ? "auto" : `${products.length * 60}vh` }}
+      className="relative lg:h-(--showcase-h)"
+      style={
+        reduce
+          ? undefined
+          : ({ "--showcase-h": `${products.length * 60}vh` } as CSSProperties)
+      }
     >
-      <div className="sticky top-0 flex h-screen max-h-[980px] min-h-[640px] items-center overflow-hidden">
+      {/* phone & tablet: every colour in a swipeable rail, no pinned scrolling */}
+      <div className="py-16 lg:hidden">
+        <div className="mx-auto max-w-7xl px-5 md:px-8">
+          <p className="eyebrow mb-4">The collection</p>
+          <h2 className="display text-5xl text-ink">Choose your colour</h2>
+        </div>
+
+        <ul className="no-scrollbar mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-5 px-5 pb-4 md:scroll-px-8 md:px-8">
+          {products.map((p) => (
+            <li
+              key={p.slug}
+              className="w-[68vw] max-w-72 shrink-0 snap-start md:w-72"
+            >
+              <Link href={`/shop/${p.slug}`} className="group block">
+                <div className="relative aspect-[3/4] overflow-hidden rounded-[2rem] bg-sage-soft shadow-[0_24px_50px_-30px_rgb(20_23_26/0.55)]">
+                  <Image
+                    src={p.image}
+                    alt={`${p.name}, ${p.color}`}
+                    fill
+                    sizes="(min-width: 768px) 288px, 68vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="mt-4 flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="font-display text-2xl font-black leading-tight">
+                      {p.name.replace(" Fofi", "")}
+                      <span className="text-sage-deep"> Fofi</span>
+                    </p>
+                    <p className="mt-1 flex items-center gap-2 text-muted">
+                      <span
+                        aria-hidden="true"
+                        className="inline-block size-3.5 rounded-full ring-1 ring-ink/15"
+                        style={{ backgroundColor: p.swatch }}
+                      />
+                      {p.color}
+                    </p>
+                  </div>
+                  <span className="shrink-0 rounded-full bg-ink px-3 py-1 text-sm font-black text-yellow">
+                    ${SITE.price}
+                  </span>
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* desktop: the pinned showcase */}
+      <div className="sticky top-0 hidden h-screen max-h-[980px] min-h-[640px] items-center overflow-hidden lg:flex">
         <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 px-5 md:px-8 lg:grid-cols-2 lg:gap-16">
           {/* text side */}
           <div className="order-2 lg:order-1">

@@ -128,7 +128,7 @@ async function ProductDetails({
         <div className="min-w-0">
           <Reveal>
             <p className="eyebrow mb-4">Fofi</p>
-            <h1 className="display text-6xl text-ink md:text-7xl">
+            <h1 className="display text-5xl text-ink sm:text-6xl md:text-7xl">
               <SplitWords text={product.name} delay={0.1} />
             </h1>
 
@@ -148,7 +148,7 @@ async function ProductDetails({
               <p className="pb-1 text-base font-bold text-muted">per piece</p>
             </div>
 
-            <p className="mt-8 text-lg leading-9 text-ink/80">
+            <p className="mt-8 text-base leading-8 text-ink/80 md:text-lg md:leading-9">
               A hooded blanket with a soft, thick lining inside and an elegant{" "}
               <span className="font-bold text-ink">
                 {product.color.toLowerCase()}
@@ -160,7 +160,9 @@ async function ProductDetails({
 
           <Reveal delay={0.1}>
             <div className="mt-10 rounded-[2.5rem] border border-line bg-surface p-5 shadow-[0_24px_60px_-40px_rgb(20_23_26/0.5)] md:p-8">
-              <h2 className="display text-4xl">Complete your order</h2>
+              <h2 className="display text-3xl md:text-4xl">
+                Complete your order
+              </h2>
               <p className="mt-2 text-muted">
                 Fill in your details and we will receive the order directly on
                 WhatsApp.

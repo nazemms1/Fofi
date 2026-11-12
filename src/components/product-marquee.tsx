@@ -59,7 +59,7 @@ export function ProductMarquee() {
                 sizes="(min-width: 768px) 288px, 208px"
                 className="object-cover transition-transform duration-[1.2s] ease-out group-hover/card:scale-110"
               />
-              <span className="absolute inset-x-3 bottom-3 flex items-center justify-between rounded-full bg-bg/90 px-4 py-2 text-sm font-bold text-ink opacity-0 translate-y-2 transition-all duration-500 group-hover/card:translate-y-0 group-hover/card:opacity-100">
+              <span className="absolute inset-x-3 bottom-3 flex items-center justify-between rounded-full bg-bg/90 px-4 py-2 text-sm font-bold text-ink opacity-0 translate-y-2 transition-all duration-500 group-hover/card:translate-y-0 group-hover/card:opacity-100 pointer-coarse:translate-y-0 pointer-coarse:opacity-100">
                 {p.color}
                 <span
                   className="size-3.5 rounded-full ring-1 ring-ink/20"
